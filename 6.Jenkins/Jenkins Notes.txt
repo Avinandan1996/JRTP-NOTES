@@ -1,0 +1,275 @@
+===========================
+Build & Deployment Process
+===========================
+
+1) Take leatest source code from Git Hub
+
+2) Compile project source code
+
+3) Execute Unit Test cases
+
+4) Perform Code Review using SonarQube
+
+5) Package the application (jar/war)
+
+6) Upload Build artifact in Nexus
+
+7) deploy the Application in server
+
+================================
+Realtime Application Enviroment
+================================
+
+Enviroment: A platform which is used to run  our application
+
+GitHUb ------>Dev Env--->QA Env--->UAT Env---->Pilot Env--->Prod Env
+
+DEV Env:- Developer will use to perform integration testing
+
+QA Env:- Tester will use to perform functional testing
+ 
+UAT Env:- User acceptance testing (client side team will perform application testing)
+
+Pilot Env:- It is also called Ptrte-Prod enviroment (performance testing) 
+
+PROD Env:- Live Envirement( end users can access the application)
+
+www.gmail.com ----> Production env url of the project
+
+www.facebook.com ----> Production env url of the project
+
+
+Devlopment Team: Responsible for project development( Coding)
+
+Testing Team: Responsible for project functionality testing (verification & validation)
+
+Operation Team: Responsible for Build & development process
+
+Development + Operations =========> DevOps
+
+
+DevOps is a process which is used to colloborate development team work & operations team work
+
+Using DevOps process we can simplify application Build & Deployment process
+
+============================
+Challenges in Manual process
+============================
+
+-> Every day we need to deploy latest code
+
+-> Deploy code in multiple enviroments
+
+-> Takes alots of time
+
+-> Repeated Work
+
+-> Error Prone
+
+
+========
+Jenkins 
+========
+
+-> Jenkins is open and free software
+
+->Jenkins developed using java language
+
+-> Jenkins is used to automate build & deployement process
+
+-> We can implement CI CD using jenkins 
+
+Note: After setup Jenkins in linux, open chrome and paste ip address <ip4 address>:8080
+
+
+================
+What is CI CD ?
+================
+
+CI : Continuous Integration
+
+CD : Continuous Delivery / Continuous Deployment
+
+-> CI CD is one of the trending approach in software development life cycle
+
+-> CI CD is used to simplify and automate project deployement & delivery process 
+
+
+Continuous Integration : When code changes happend it should be ready to use
+
+Continuous Delivery : Keep it ready to release in the repository
+
+Continuous Deployment : Deploy the project to production
+
+Note: Fro production deployment we need to take Client approval.
+
+
+
+===================
+Manual Deployement
+===================
+
+Git Hub Repo URL :  https://github.com/ashokitschool/maven-web-app.git
+
+
+-> Downloaded the code from GitHub
+
+-> Executed Maven Goals (mvn clean package)-----> War file created
+
+-> Uploaded War file into Tomcate Server (deployment) 
+
+
+===================
+Infrastructure Setup 
+====================
+
+-> Create  Linux VM using EC2 in AWS cloud  and install  tomcat server
+
+-> Create  Linux VM using EC2 in AWS cloud  and install  Jenkins server
+
+-> Clone Git Hub Repository
+
+
+=========================
+Automation Using jankins
+=========================
+
+-> Download project from git hub
+
+-> Package the project using maven
+
+-> Maven will create War file
+
+-> Deploy War file into tomcat
+
+-> Access application using URL in browser
+
+
+=============================
+Jenkins Job Creation Process
+=============================
+
+1) Login into Jenkins
+
+2) Configure Maven in Global Tool Configuration (Jenkins will download Maven)
+
+
+      GoTo --> Manage Jenkins---> Global tools Configurations----> Add Maven
+
+        
+
+3) Install 'Deploy To Container' Plugin (To deploy war tomcat server)
+
+       GoTo--> Manage Jenkins ----> Manage Plugins ---->Goto available tab 
+
+               --->search for 'deploy to container plugin --> click on install without re-start
+
+
+Note: Git s/w will be available by default in jenkins Global tools configuration
+
+
+4) Create Free Style Project 
+
+5) Enter Git Repo URL
+
+6) Build Trigger (configure Maven which is added in Global Tools and Provide Maven Goals as clean package)
+
+7) Add Tomcat Server in Post Build Action For deployment
+
+8) Save the Job configuration
+
+9) Run the Job
+
+10) See Tomcat Dashboard (Application should display) and access the application
+
+
+=================
+Poll SCM
+==================
+
+-> Click on Job name
+
+-> Click On Configure
+
+-> Configure Poll SCM with cron expression as ( * * * * *)
+
+-> Every minute it will check for code changes, if code changes available then jenkins job will run 
+
+
+============================
+How to deploy web application ?
+============================
+
+-> To deploy a web application we need a server
+
+-> We are using Apache Tomcat as webserver to run web applications
+
+-> Web Application will be packaged as war file 
+
+-> WAR file we will keep in tomcat server webapps folder.
+
+-> webapps folder is called as Deployment folder
+
+===================================
+How to deploy Spring Boot Application ?
+===================================
+
+-> Spring Boot application will execute from main  ( ) method
+
+-> Spring Boot Application can be deployed as jar file
+
+-> We no need to configure external server to run / deploy spring boot application
+
+-> Spring Boot having embedded server to run Spring Boot Application
+
+========================================
+Running Spring Boot Application In AWS Cloud
+========================================
+
+1) Create Linux Virtual Machine (Amazon Linux)
+
+2) Connect Linux Virtual Machine using MobaXterm
+
+3) Install Java software
+
+		$ sudo yum install java
+
+4) Upload Spring Boot Jar file into Linux VM
+
+5) Run Spring Boot Jar file using below command
+
+	 	$ java -jar  <jar-file-name>
+
+6) Enable 8080 port number in security group of our Linux Virtual Machine
+
+7) Access our application in browser
+
+		URL : http://public-ip:8080/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
